@@ -3,18 +3,15 @@ const Schema=mongoose.Schema;
 
 
 
-const userSchema = new Schema({
+const ProductSchema = new Schema({
        _id:mongoose.Schema.Types.ObjectId,
-       pic:{type:String,required:true},
-       email:{type:String,required:true},
-       password:{
-           type:String, required:true
-       },
+    //   pic:{type:String,required:false},
+       company:{type:String,required:true},
        name:{type:String,required:true},
-       contact:{type:Number,required:true},
-       address:{type:String,required:true},
-       gender:{type:String,required:true},
-       age:{type:String,required:true},
+       availability:{type:Number,required:true},
+       seller:{type:String,required:true},
+       color:{type:String,required:true},
+       popularity:{type:String,required:true},
 
 
       
@@ -22,4 +19,4 @@ const userSchema = new Schema({
    
 
 });
-module.exports=mongoose.model('User',userSchema);
+module.exports=mongoose.model('Products',ProductSchema);
