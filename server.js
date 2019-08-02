@@ -5,6 +5,7 @@ const app=express();
 const user_api=require('./routes/user_api');
 const bodyParser=require('body-Parser');
 const mongoose=require('mongoose');
+const product_api=require('./routes/product_api');
 
 const db= "mongodb://localhost:27017/ECOM";
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({
  }));
 app.use(bodyParser.json());
 app.use('/',user_api);
+app.use('/product_api',product_api);
 
 app.use('/uploads', express.static('uploads'));
 
