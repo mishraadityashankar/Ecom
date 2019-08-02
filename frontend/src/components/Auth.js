@@ -19,22 +19,26 @@ import Axios from 'axios';
        this.props.history.push('/login');
 
     }
-
+  //this route is for backend
+   
     Axios.get('/getUser',{headers : { Authorization:`Bearer ${jwt}`}}).then(res => this.setState({
         
        user:res.data
     })).catch(err =>{
        
         localStorage.removeItem('jwt');
-        this.props.history.push('/login');
+        this.props.history.push('/login'); //this route is for frontend
 
     });
+    
   }
 
+  
   render(){
+      console.log(this.state.user);
       if(this.state.user===undefined){
           return(
-           <div><h1>Loading....</h1></div>
+           <div><h1>Loading</h1></div>
           );
       }
       return(

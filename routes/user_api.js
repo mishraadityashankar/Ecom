@@ -113,6 +113,13 @@ router.post("/login",(req,res,next) => {
     });
 });
 
+router.get('/getuser',checkauth,(req,res) =>{
+	console.log('get request for students');
+     return res.send(req.user);
+  });   
+  
+
+
 router.get('/dashboard',checkauth,(req,res) =>{
  
   const token=req.headers.authorization.split(" ")[1];

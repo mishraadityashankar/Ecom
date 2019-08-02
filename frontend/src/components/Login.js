@@ -51,7 +51,7 @@ export default class Login extends Component{
     axios.post('/login', oldUser)
     .then(res =>{
      localStorage.setItem('jwt',res.data);
-     this.props.history.push('/edit/:id');
+     this.props.history.push('/dashboard');
       
     }).catch(err=> console.log(err));
 
@@ -68,7 +68,7 @@ export default class Login extends Component{
       return(
           <div style={divStyle}>
               <h3>
-                  new user
+                  login
               </h3>
               <Form  onSubmit={this.onSubmit}>
                    <Form.Group controlId="formBasicEmail">
