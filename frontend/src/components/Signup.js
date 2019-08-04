@@ -112,14 +112,22 @@ export default class Signup extends Component{
 
   render(){
       return(
-          <div >
-              <h3>
-                  new user
-              </h3>
-              <Form  onSubmit={this.onSubmit}>
+          <div className="container w-50 mx-auto mb-5 ">
+              <div><h1 className="text-center text-capitalize pt-3">Register</h1>
+                                    <hr className="w-25 mx-auto pt-3"></hr>
+                                    </div>
+             
+   
+      
+       
+      
+        
+        
+        
+          <Form  onSubmit={this.onSubmit}>
                    <Form.Group controlId="formBasicEmail">
-                   <Form.Label>Email address</Form.Label>
-                   <Form.Control type="email" placeholder="Enter email"   value={this.state.email}
+                   <Form.Label>Email address:</Form.Label>
+                   <Form.Control type="email"  value={this.state.email}
                                 onChange={this.onChangeEmail}/>
                    <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
@@ -127,57 +135,62 @@ export default class Signup extends Component{
                     </Form.Group>
 
                      <Form.Group controlId="formBasicPassword">
-                     <Form.Label>Password</Form.Label>
-                     <Form.Control type="password" placeholder="Password"    value={this.state.password}
+                     <Form.Label>Password:</Form.Label>
+                     <Form.Control type="password"    value={this.state.password}
                                 onChange={this.onChangePassword}/>
                      </Form.Group>
                      {/* <Form.Group controlId="formBasicChecbox">
                      <Form.Check type="checkbox" label="Check me out" />
                      </Form.Group> */}
-                    <Form.Group controlId="formBasicPic">
-                     <Form.Label>pic</Form.Label>
-                     <Form.Control type="file"    
-                                onChange={this.fileSelectedHandler}/>
-                     </Form.Group>
+                    
 
                      <Form.Group controlId="formBasicName">
-                     <Form.Label>name</Form.Label>
-                     <Form.Control type="text" placeholder="name"    value={this.state.name}
+                     <Form.Label>Name:</Form.Label>
+                     <Form.Control type="text"  value={this.state.name}
                                 onChange={this.onChangeName}/>
                      </Form.Group>
 
                      <Form.Group controlId="formBasicAddress">
-                     <Form.Label>address</Form.Label>
-                     <Form.Control type="text" placeholder="address"    value={this.state.address}
+                     <Form.Label>Address:</Form.Label>
+                     <Form.Control type="text"     value={this.state.address}
                                 onChange={this.onChangeAddress}/>
                      </Form.Group>
 
                      <Form.Group controlId="formBasicContact">
-                     <Form.Label>Contact</Form.Label>
-                     <Form.Control type="number" placeholder="contact"    value={this.state.contact}
+                     <Form.Label>Contact:</Form.Label>
+                     <Form.Control type="number"     value={this.state.contact}
                                 onChange={this.onChangeContact}/>
                      </Form.Group>
 
                      <Form.Group controlId="formBasicAge">
-                     <Form.Label>Age</Form.Label>
-                     <Form.Control type="number" placeholder="age"    value={this.state.age}
+                     <Form.Label>Age:</Form.Label>
+                     <Form.Control type="number"  value={this.state.age}
                                 onChange={this.onChangeAge}/>
                      </Form.Group>
 
 
                      <Form.Group controlId="formBasicGender">
-                     <Form.Label>gender</Form.Label>
+                     <Form.Label>Gender:</Form.Label>
                      <Form.Control type="text" placeholder="gender"    value={this.state.gender}
                                 onChange={this.onChangeGender}/>
                      </Form.Group>
+                     <br/>
+                     <Form.Group controlId="formBasicPic">
+                     <Form.Label>Profile Picture:</Form.Label>
+                     <Form.Control type="file"    
+                                onChange={this.fileSelectedHandler}/>
+                     </Form.Group>
 
 
-
+                     <br/>
+                     
                     <Button variant="primary"  type="submit">
                       Submit
                     </Button>
                 </Form>
-          </div>
+                </div>
+       
+         
       )
   }
 
