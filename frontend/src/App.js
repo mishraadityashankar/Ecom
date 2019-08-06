@@ -6,8 +6,10 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 
 import Dashboard from './components/Dashboard'
+import OpenProduct from './components/OpenProduct'
 import Auth from './components/Auth';
 import "bootstrap/dist/css/bootstrap.min.css";
+import ProductList from './components/ProductList';
 
 function App() {
   return (
@@ -32,7 +34,8 @@ function App() {
           </nav>
         <Switch>
         <Route path="/signup" component={Signup}/>
-
+        <Route path="/openProduct/:id" component={OpenProduct} />
+        <Route path="/productList" component={ProductList} />
         <Route path="/login" component={Login}/>
         <Auth>
         <Route path="/dashboard" component={Dashboard} />

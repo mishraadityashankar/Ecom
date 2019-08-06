@@ -20,6 +20,7 @@ class Dashboard extends Component {
       const jwt= localStorage.getItem("jwt");
       axios.get('/dashboard',{headers : { Authorization:`Bearer ${jwt}`}})
       .then(response => {
+        console.log("dashboard loaded")
           this.setState({
             name : response.data.name,
             address : response.data.address,
@@ -36,22 +37,23 @@ class Dashboard extends Component {
     }
   
   
-    componentDidUpdate(){
-      const jwt= localStorage.getItem("jwt");
-      axios.get('/dashboard',{headers : { Authorization:`Bearer ${jwt}`}})
-      .then(response => {
-          this.setState({name : response.data.name,
-            address : response.data.address,
-            age : response.data.age,
-            gender : response.data.gender,
-            contact : response.data.contact,
-            pic : response.data.pic
-          });
-      })
-      .catch(function (error) {
-          console.log(error);
-      })  
-    }
+    // componentDidUpdate(){
+    //   const jwt= localStorage.getItem("jwt");
+    //   axios.get('/dashboard',{headers : { Authorization:`Bearer ${jwt}`}})
+    //   .then(response => {
+    //       console.log("dashboard loaded")
+    //       this.setState({name : response.data.name,
+    //         address : response.data.address,
+    //         age : response.data.age,
+    //         gender : response.data.gender,
+    //         contact : response.data.contact,
+    //         pic : response.data.pic
+    //       });
+    //   })
+    //   .catch(function (error) {
+    //       console.log(error);
+    //   })  
+    // }
     render() {
         return (
             <div className="container pb-5">
