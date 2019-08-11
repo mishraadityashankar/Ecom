@@ -6,7 +6,7 @@ import axios from 'axios';
 const Product= props =>(
   <div className="col-lg-4 col-md-6 pt-2" >
   
-  
+{/*   
       <img src={props.product.pic} alt="event" className="img-fluid  " ></img> 
   
   
@@ -17,7 +17,23 @@ const Product= props =>(
       <button type="button">
           open!
      </button>
+      </Link> */}
+
+
+
+      <div className="card" >
+    <img className="card-img-top" src={props.product.pic}  alt="Card image"/>
+    <div className="card-body">
+    <h4 className="card-title">{props.product.name}</h4>
+    <p className="card-text">Some example text.</p>
+    <Link to={"/openProduct/"+props.product._id}>
+      <button type="button" className="btn btn-primary">
+          open!
+     </button>
       </Link>
+    </div>
+</div>
+
 
   </div>
   )

@@ -15,6 +15,15 @@ const userSchema = new Schema({
        address:{type:String,required:true},
        gender:{type:String,required:true},
        age:{type:String,required:true},
+       cart: [
+        {
+          product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Products'
+          },
+          quantity:{ type :Number ,default :1}
+        }
+      ]
 
 
       

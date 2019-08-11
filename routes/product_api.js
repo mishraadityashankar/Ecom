@@ -41,7 +41,8 @@ const upload = multer({storage:storage});
         popularity:req.body.popularity,
         availability:req.body.availability,
         color:req.body.color,
-        seller:req.body.seller
+        seller:req.body.seller,
+        price: req.body.price
      });
      newProduct.save().then(newP=> res.json(newP)).catch(err=>console.log(err));
      

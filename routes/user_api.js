@@ -3,7 +3,7 @@ const express=require('express');
 const router = express.Router();
 const mongoose= require('mongoose');
 const User =require('../modals/user_modal');
-
+const  Product =require('../modals/product_modal');
 const checkauth =require('../auth-check');
 const bcrypt=require('bcrypt');
 
@@ -140,7 +140,44 @@ router.get('/dashboard',checkauth,(req,res) =>{
        
         res.send(details);
       });
-  
+
+      router.post('/addToCart',checkauth,(req,res) =>{
+ 
+        const token=req.headers.authorization.split(" ")[1];
+        const decoded=jwt.verify(token,"secret");
+        req.userData =decoded;
+
+        console.log(req.userData.userId)
+        //   Product.findById(req.params.id)
+        //  .then((Product)=>{
+        //    Console.log(Product);
+        //  User.findOneAndUpdate({_id: req.userData.userId}, {$push: {product: Product}});
+        //  }).catch(err => console.log(err));
+      
+         const item= {product:req.body.product,quantity:1}
+         console.log(item)
+       // User.findOneAndUpdate({_id: req.userData.userId}, {$push: {cart: item}});
+      //   User.update(
+      //     { _id: req.userData.userId }, 
+      //     { $push: { cart: item } },
+      //     done
+      // );
+      User.findOneAndUpdate(
+        { _id: req.userData.userId }, 
+        { $push: { cart: item } },
+       function (error, success) {
+             if (error) {
+                 console.log(error);
+             } else {
+                 console.log(success);
+                 res.send ( success);
+             }
+         });
+     
+         
+         
+            });
+        
    
   
 
