@@ -14,6 +14,7 @@ class OpenProduct extends Component {
 
            
         };
+        this.handleClick = this.handleClick.bind(this);
     }
   
     componentDidMount(){
@@ -56,6 +57,22 @@ class OpenProduct extends Component {
     //         console.log(error);
     //     })  
     // }
+    handleClick()
+    {
+        const jwt= localStorage.getItem("jwt");
+        console.log("Bearer "+jwt)
+       var obj={
+           product:"",
+           quantity:1
+       }
+        axios.post("/addToCart/"+this.props.match.params.id,obj,{headers : {  'Content-Type' : 'application/json',
+        'Accept' : 'application/json',
+        'Authorization' :"Bearer "+jwt}})
+    .then(res => {
+      console.log(res);
+      
+      }).catch(err => console.log(err))
+    }
     render() {
         return (
             <div className="container pb-5">
@@ -111,6 +128,10 @@ class OpenProduct extends Component {
                         </tbody>
                     </table>
                         
+
+                    <button type="button" className="btn btn-success float-right" onClick={this.handleClick}>
+                      Add to cart
+                    </button>
                     </div>
 
                 </div>

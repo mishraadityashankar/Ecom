@@ -141,21 +141,22 @@ router.get('/dashboard',checkauth,(req,res) =>{
         res.send(details);
       });
 
-      router.post('/addToCart',checkauth,(req,res) =>{
- 
+      router.post('/addToCart/:id',checkauth,(req,res) =>{
+        console.log(req.param.id)
         const token=req.headers.authorization.split(" ")[1];
         const decoded=jwt.verify(token,"secret");
         req.userData =decoded;
-
-        console.log(req.userData.userId)
-        //   Product.findById(req.params.id)
-        //  .then((Product)=>{
-        //    Console.log(Product);
+            
+        console.log(req.params.id)
+          Product.findById(req.params.id)
+         .then((Product)=>{
+          // console.log(Product);
         //  User.findOneAndUpdate({_id: req.userData.userId}, {$push: {product: Product}});
         //  }).catch(err => console.log(err));
-      
-         const item= {product:req.body.product,quantity:1}
-         console.log(item)
+          console.log(Product);
+        //  const item= {product:req.body.product,quantity:1}
+        const item={product:Product,quantity:1};
+        // console.log(item)
        // User.findOneAndUpdate({_id: req.userData.userId}, {$push: {cart: item}});
       //   User.update(
       //     { _id: req.userData.userId }, 
@@ -165,20 +166,66 @@ router.get('/dashboard',checkauth,(req,res) =>{
       User.findOneAndUpdate(
         { _id: req.userData.userId }, 
         { $push: { cart: item } },
-       function (error, success) {
+       function (error,cartItem) {
              if (error) {
                  console.log(error);
              } else {
-                 console.log(success);
-                 res.send ( success);
+                 //console.log(cartItem);
+                 res.send ("added");
              }
          });
      
          
          
-            });
-        
-   
+            }).catch(err => console.log(err));
+          });
+            router.get('/cartItem',checkauth,(req,res) =>{
+ 
+              const token=req.headers.authorization.split(" ")[1];
+              const decoded=jwt.verify(token,"secret");
+              req.userData =decoded;
+              var newList = new Array();
+              var totalPrice=0;
+              User.findById(
+                { _id: req.userData.userId }, 
+                
+               function (error,cartItem) {
+                     if (error) {
+                         console.log(error);
+                     } else {
+                         console.log(cartItem);
+                        
+                         // res.send ( cartItem.cart);
+                        cartItem.cart.forEach(async function(currentProduct, index) {
+                           await Product.findById(currentProduct.product ,
+                           function(err, data){
+                              if(!err){
+                             console.log(data.price);
+                             totalPrice+=data.price;
+                              newList.push(data);}
+                              else
+                              console.log(err);
+                         });
+                         
+                         res.send({newList:newList,totalPrice:totalPrice})
+                         console.log(totalPrice);
+                          //  (Product) => {  
+                          //  console.log("yeh hai product" +Product);
+                          // }
+                          // .then((Product)=>{  ;
+                          //   console.log("yeh hai product" +Product);
+                          // }).catch(err => console.log(err));
+                         
+                      } )
+                      
+                        
+                      
+                       
+                     
+                    }
+                 })
+                });
+                              
   
 
 

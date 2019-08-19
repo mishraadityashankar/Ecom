@@ -25,18 +25,22 @@ const Product= props =>(
     <img className="card-img-top" src={props.product.pic}  alt="Card image"/>
     <div className="card-body">
     <h4 className="card-title">{props.product.name}</h4>
+    <p className="card-title float-right">Rs {props.product.price}</p>
     <p className="card-text">Some example text.</p>
     <Link to={"/openProduct/"+props.product._id}>
       <button type="button" className="btn btn-primary">
-          open!
+          open item
      </button>
       </Link>
+
+  
     </div>
 </div>
 
 
   </div>
   )
+ 
 
 class ProductList extends Component {
 
@@ -45,6 +49,7 @@ class ProductList extends Component {
     this.state={ products : []
      
     };
+   
 }
 
 
@@ -69,7 +74,6 @@ class ProductList extends Component {
 //         console.log(error);
 //     }) 
 //     }
-
 
 
 

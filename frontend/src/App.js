@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Signup from './components/Signup';
 import Login from './components/Login';
 
-
+import MyCart from './components/MyCart';
 import Dashboard from './components/Dashboard'
 import OpenProduct from './components/OpenProduct'
 import Auth from './components/Auth';
@@ -27,7 +27,13 @@ function App() {
    
    
   }
- 
+  function registerOrCart() {
+    const jwt= localStorage.getItem("jwt");
+   var cartOrRegister =   <Link to="/signup" className="nav-link" refresh="true">Register</Link>  
+    if(jwt)
+    cartOrRegister = <Link to="/MyCart" className="nav-link" refresh="true">My Cart</Link>  
+    return cartOrRegister;
+  }
   return (
     <div className="App">
     
@@ -46,11 +52,15 @@ function App() {
                 {isloggedin()}
                 </li>
                 <li className="navbar-item">
-                  <Link to="/signup" className="nav-link">Register</Link>
+                  {/* <Link to="/signup" className="nav-link">Register</Link> */}
+                  {registerOrCart()}
                 </li>
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">Products</Link>
                 </li>
+                {/* <li className="navbar-item">
+                  <Link to="/MyCart" className="nav-link">My Cart</Link>
+                </li> */}
               </ul>
             </div>
           </nav>
@@ -62,7 +72,7 @@ function App() {
        
         <Auth>
         <Route path="/dashboard" component={Dashboard} />
-        
+        <Route path="/MyCart" component={MyCart} />
         </Auth>
         </Switch>
       </Router>
