@@ -11,6 +11,7 @@ import OpenProduct from './components/OpenProduct'
 import Auth from './components/Auth';
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductList from './components/ProductList';
+import Edit from './components/Edit';
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
         <Auth>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/MyCart" component={MyCart} />
+        <Route path="/edit" component={Edit}/>
         </Auth>
         </Switch>
       </Router>

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router,Route,Switch,Link} from "react-router-dom";
 import Login from './Login';
+import Button from 'react-bootstrap/Button';
 class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state={
+            id:'',
             name : '',
             address : '',
             age : '',
@@ -17,13 +19,14 @@ class Dashboard extends Component {
         };
     }
 
-  
+ 
     componentDidMount(){
       const jwt= localStorage.getItem("jwt");
       axios.get('/dashboard',{headers : { Authorization:`Bearer ${jwt}`}})
       .then(response => {
         console.log("dashboard loaded")
           this.setState({
+             id: response.data.id ,
             name : response.data.name,
             address : response.data.address,
             age : response.data.age,
@@ -59,6 +62,7 @@ class Dashboard extends Component {
 
   
     render() {
+        const userid=this.state.id;
         return (
             <div className="container pb-5">
                  <h1 className="text-center text-capitalize pt-3 mb-3">Dashboard</h1>
@@ -107,7 +111,11 @@ class Dashboard extends Component {
 
                         </tbody>
                     </table>
-                        
+                    <Link to={"/edit/"+userid}>
+                        <button type="button" className="btn btn-primary">
+                           Edit
+                        </button>
+                     </Link>
                     </div>
 
                 </div>

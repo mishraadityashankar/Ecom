@@ -127,7 +127,7 @@ router.get('/dashboard',checkauth,(req,res) =>{
   req.userData =decoded;
    
           const details = {
-  
+            id:req.userData.userId,
             name:req.userData.name,
             pic:req.userData.pic,
             contact:req.userData.contact,
@@ -140,6 +140,76 @@ router.get('/dashboard',checkauth,(req,res) =>{
        
         res.send(details);
       });
+
+      //edit api
+
+      router.post("/edit/:id",upload.single('pic'),(req,res) =>{
+ 
+     
+         
+                var details = {
+        
+                  name:req.body.name,
+                  pic:req.file.path,
+                  contact:req.body.contact,
+                  address:req.body.address,
+                  gender:req.body.gender,
+                  age:req.body.age
+                
+        
+              };
+              
+              User.findById(mongoose.Types.ObjectId(req.params.id)).then(
+                (dbuser)=>{
+                  if(!req.file.path )
+               {
+                 details.pic=dbuser.pic;
+               }
+               if(!req.body.name )
+               {
+                details.name=dbuser.name;
+               }
+               if(!req.body.address )
+               {
+                details.address=dbuser.address;
+               }
+               if(!req.body.contact )
+               {
+                details.contact=dbuser.contact;
+               }
+               if(!req.body.age )
+               {
+                details.age=dbuser.age;
+               }
+               if(!req.body.gender )
+               {
+                details.gender=dbuser.gender;
+               }
+                }
+              ).catch(err=>console.log(err));
+
+              User.findOneAndUpdate(
+                mongoose.Types.ObjectId(req.params.id),
+                details,
+               function (error,updatedresult) {
+                     if (error) {
+                         console.log(error);
+                     } else {
+                         console.log(updatedresult);
+                         res.send (updatedresult);
+                     }
+                 });
+              
+              
+           
+          
+        
+      });
+              
+             
+              
+      
+           
 
       router.post('/addToCart/:id',checkauth,(req,res) =>{
         console.log(req.param.id)
