@@ -7,7 +7,7 @@ const bodyParser=require('body-Parser');
 const mongoose=require('mongoose');
 const product_api=require('./routes/product_api');
 
-const db= "mongodb://localhost:27017/ECOM";
+const db= "mongodb://Ecom:Sriganesh3@ds233278.mlab.com:33278/ecom";
 
 app.use(bodyParser.urlencoded({
     extended: false

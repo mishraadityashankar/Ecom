@@ -4,7 +4,7 @@ import { BrowserRouter as Router,Route,Switch,Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";   
 import Signup from './components/Signup';
 import Login from './components/Login';
-
+import Test from './components/Test';
 import MyCart from './components/MyCart';
 import Dashboard from './components/Dashboard'
 import OpenProduct from './components/OpenProduct'
@@ -24,9 +24,7 @@ function App() {
   function Logout (){
     localStorage.removeItem("jwt");
 
-   
-   
-  }
+   }
   function registerOrCart() {
     const jwt= localStorage.getItem("jwt");
    var cartOrRegister =   <Link to="/signup" className="nav-link" refresh="true">Register</Link>  
@@ -69,7 +67,7 @@ function App() {
         <Route path="/openProduct/:id" component={OpenProduct} />
         <Route path="/" exact component={ProductList} />
         <Route path="/login" component={Login}/>
-       
+        <Route path="/test" component={Test}/>
         <Auth>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/MyCart" component={MyCart} />
