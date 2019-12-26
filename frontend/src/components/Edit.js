@@ -66,17 +66,17 @@ class Edit extends Component {
       
          const fd=new FormData();
          fd.append('pic',this.state.pic,this.state.pic.name);
-         fd.append('name',this.state.name);
+         fd.set('name',this.state.name);
          
-         fd.append('address',this.state.address);
-         fd.append('contact',this.state.contact);
-         fd.append('age',this.state.age);
-         fd.append('gender',this.state.gender);
+         fd.set('address',this.state.address);
+         fd.set('contact',this.state.contact);
+         fd.set('age',this.state.age);
+         fd.set('gender',this.state.gender);
     
          
          
-        axios.post('/edit/'+this.props.match.params.id, fd)
-        .then(res => console.log(res.data)).catch(err=> console.log(err));
+        axios.post('/edit/'+this.props.match.params.id, fd,  {'Content-Type': 'multipart/form-data' })
+        .then(res => console.log(res.data)).catch(err=> console.log("nahi aaaya aaaaaaaaaaaaaaaa"));
         this.props.history.push('/dashboard');
     }
 

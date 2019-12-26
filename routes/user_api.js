@@ -158,10 +158,9 @@ router.get('/dashboard',checkauth,(req,res) =>{
                 
         
               };
-              
-              User.findById(mongoose.Types.ObjectId(req.params.id)).then(
-                (dbuser)=>{
-                  if(!req.file.path )
+              console.log(details);
+              User.findById(mongoose.Types.ObjectId(req.params.id),(dbuser)=>{
+                if(!req.file.path )
                {
                  details.pic=dbuser.pic;
                }
@@ -185,28 +184,23 @@ router.get('/dashboard',checkauth,(req,res) =>{
                {
                 details.gender=dbuser.gender;
                }
-                }
-              ).catch(err=>console.log(err));
+               console.log(details);
+                
+                User.findOneAndUpdate(
+                  mongoose.Types.ObjectId(req.params.id),
+                  details,
+                 function (error,updatedresult) {
+                       if (error) {
+                           console.log(error);
+                       } else {
+                           console.log(updatedresult);
 
-              User.findOneAndUpdate(
-                mongoose.Types.ObjectId(req.params.id),
-                details,
-               function (error,updatedresult) {
-                     if (error) {
-                         console.log(error);
-                     } else {
-                         console.log(updatedresult);
-                         res.send (updatedresult);
-                     }
+                           
+                       }
+                   });
                  });
-              
-              
-           
-          
-        
-      });
-              
-             
+                 res.send ("changes done");
+                });
               
       
            
